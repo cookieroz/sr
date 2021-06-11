@@ -3,27 +3,25 @@ import PropTypes from "prop-types"
 import { Star, StarHalf } from "grommet-icons"
 import { Box } from "grommet"
 
-export const StarRating = ({ rating }) => {
-  const MAX = 5
-  const ratingAsNumber = parseFloat(rating)
-  const fullStars = Math.min(Math.floor(ratingAsNumber), MAX)
-  const hasPartial =
-    rating && fullStars < MAX && !Number.isInteger(ratingAsNumber)
-  const emptyStars = MAX - (hasPartial ? fullStars + 1 : fullStars)
+import { useGetStars } from "./get-stars.hook"
+
+export const StarRating = ({ color = "accent-4", rating }) => {
+  const { emptyStarsArray, fullStarsArray, hasPartial } = useGetStars(rating)
 
   return (
     <Box direction="row" pad="small">
-      {Array.from({ length: fullStars }).map((n, index) => (
-        <Star key={`star-${n}-${index}`} />
+      {[...fullStarsArray].map((n) => (
+        <Star key={`star-${n}`} color={color} />
       ))}
-      {hasPartial && <StarHalf />}
-      {Array.from({ length: emptyStars }).map((n, index) => (
-        <Star key={`star-${n}-${index}`} fillOpacity=".2" />
+      {hasPartial && <StarHalf color={color} />}
+      {[...emptyStarsArray].map((n) => (
+        <Star key={`star-${n}`} color={color} fillOpacity=".2" />
       ))}
     </Box>
   )
 }
 
 StarRating.propTypes = {
+  color: PropTypes.string,
   rating: PropTypes.number,
 }

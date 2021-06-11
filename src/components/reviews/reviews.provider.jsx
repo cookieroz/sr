@@ -36,11 +36,8 @@ export const ReviewsContextProvider = ({ children }) => {
   const value = {
     allReviews,
     errorMessage,
-    // isLoading,
   }
-  // return (
-  //   <ReviewsContext.Provider value={value}>{children}</ReviewsContext.Provider>
-  // )
+
   return (
     <ReviewsContext.Provider value={value}>
       {isLoading ? <Spinner /> : children}
