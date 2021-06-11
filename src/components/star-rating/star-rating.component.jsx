@@ -1,21 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
+import { Star, StarHalf } from "grommet-icons"
+import { Box } from "grommet"
 
 export const StarRating = ({ rating }) => {
-	// {
-	// 	"star-rating": 0.8,
-	// 	"publish_date": "2016-09-05T23:25:47.642350Z",
-	// 	"id": "9783221620868",
-	// 	"body": "The fool doth think he is wise, but the wise man knows himself to be a fool.",
-	// 	"author": "Kaley Schiller"
-	// },
-	return (
-		<div>
-			{`rating is ${rating}`}
-		</div>
-	);
-};
+  const MAX = 5
+  const ratingAsNumber = parseFloat(rating)
+  const fullStars = Math.min(Math.floor(ratingAsNumber), MAX)
+  const hasPartial =
+    rating && fullStars < MAX && !Number.isInteger(ratingAsNumber)
+  const emptyStars = MAX - (hasPartial ? fullStars + 1 : fullStars)
+
+  return (
+    <Box direction="row" pad="small">
+      {Array.from({ length: fullStars }).map((n, index) => (
+        <Star key={`star-${n}-${index}`} />
+      ))}
+      {hasPartial && <StarHalf />}
+      {Array.from({ length: emptyStars }).map((n, index) => (
+        <Star key={`star-${n}-${index}`} fillOpacity=".2" />
+      ))}
+    </Box>
+  )
+}
 
 StarRating.propTypes = {
-	rating: PropTypes.number,
-};
+  rating: PropTypes.number,
+}

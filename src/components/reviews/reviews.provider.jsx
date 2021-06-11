@@ -7,6 +7,7 @@ import { useGetReviews } from "./hooks"
 const ReviewsContext = React.createContext({
   allReviews: [],
   errorMessage: null,
+  isLoading: false,
 })
 
 export const useReviewsContext = () => useContext(ReviewsContext)
@@ -35,8 +36,11 @@ export const ReviewsContextProvider = ({ children }) => {
   const value = {
     allReviews,
     errorMessage,
+    // isLoading,
   }
-
+  // return (
+  //   <ReviewsContext.Provider value={value}>{children}</ReviewsContext.Provider>
+  // )
   return (
     <ReviewsContext.Provider value={value}>
       {isLoading ? <Spinner /> : children}
