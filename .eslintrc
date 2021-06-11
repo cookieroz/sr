@@ -1,0 +1,39 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["plugin:react/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "standard", "prettier"],
+  "rules": {
+    "standard/array-bracket-even-spacing": "off",
+    "standard/computed-property-even-spacing": "off",
+    "standard/object-curly-even-spacing": "off",
+    "react/no-unescaped-entities": "off",
+    "react/no-children-prop": "off",
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "length",
+        "message":
+        "Use window.length if referring to the number of frames in the window. Else please check local context/imports.",
+      }
+    ],
+    //change airbnb defaults
+    "no-unused-vars": "warn"
+  }
+}
