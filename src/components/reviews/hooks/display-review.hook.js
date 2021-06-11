@@ -1,27 +1,17 @@
-import { useCallback, useEffect, useState } from "react"
+import { useMemo } from "react"
 import { useParams } from "react-router-dom"
 
-import { useGetReviews } from "./get-reviews.hook"
+import { useReviewsContext } from "../reviews.provider"
 
 export const useDisplayReview = () => {
-  const [review, setReview] = useState({})
-
-  const { errorMessage, getReviewRequest, isLoading, setIsLoading } =
-    useGetReviews()
+  const { allReviews } = useReviewsContext()
   const { id } = useParams()
 
-  const getReview = useCallback(async (reviewId) => {
-    if (!reviewId) {
-      return
+  return useMemo(() => {
+    if (!id) {
+      return {}
     }
-    const response = await getReviewRequest(reviewId)
-    setReview(response)
-    setIsLoading(false)
-  }, [])
 
-  useEffect(() => {
-    getReview(id)
-  }, [getReview, id])
-
-  return { errorMessage, isLoading, review }
+    return [...allReviews].find((review) => review.id === id)
+  }, [allReviews, id])
 }

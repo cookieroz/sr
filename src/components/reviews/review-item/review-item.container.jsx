@@ -1,15 +1,11 @@
 import React from "react"
 
-import { useDisplayReview } from "../hooks/display-review.hook"
+import { useDisplayReview } from "../hooks"
 import { ReviewItemComponent } from "./review-item.component"
 import { Spinner } from "../../spinner"
 
 export const ReviewItem = () => {
-  const { errorMessage, isLoading, review } = useDisplayReview()
+  const review = useDisplayReview()
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
-    <ReviewItemComponent errorMessage={errorMessage} {...review} />
-  )
+  return review?.id ? <ReviewItemComponent {...review} /> : <Spinner />
 }

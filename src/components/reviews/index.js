@@ -1,1 +1,2 @@
-export * from "./reviews-list";
+export * from "./reviews-list"
+export * from "./reviews.provider"

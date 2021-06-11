@@ -1,15 +1,12 @@
 import React from "react"
 
-import { Spinner } from "../../spinner"
-import { useDisplayAllReviews } from "../hooks/display-all-reviews.hook"
+import { useReviewsContext } from "../reviews.provider"
 import { ReviewsListComponent } from "./reviews-list.component"
 
 export const ReviewsList = () => {
-  const { allReviews, errorMessage, isLoading } = useDisplayAllReviews()
+  const { allReviews, errorMessage } = useReviewsContext()
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return (
     <ReviewsListComponent errorMessage={errorMessage} reviews={allReviews} />
   )
 }
