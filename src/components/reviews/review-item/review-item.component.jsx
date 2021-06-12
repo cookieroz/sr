@@ -2,8 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Box } from "grommet"
 
+import { formatReviewDate } from "../../../utils"
 import { StarRating } from "../../star-rating"
-import { useFormatReviewDate } from "../hooks"
 
 export const ReviewItemComponent = ({
   author,
@@ -11,7 +11,7 @@ export const ReviewItemComponent = ({
   publish_date: publishDate,
   rating,
 }) => {
-  const reviewDate = useFormatReviewDate(publishDate)
+  const reviewDate = formatReviewDate(publishDate)
 
   return (
     <Box pad="medium" direction="row">

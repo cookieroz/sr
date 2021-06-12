@@ -1,3 +1,2 @@
 export * from "./display-review.hook"
-export * from "./format-review-date.hook"
-export * from "./get-reviews.hook"
+export * from "./get-all-reviews.hook"

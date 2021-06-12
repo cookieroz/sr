@@ -1,45 +1,21 @@
-import React, { useState, useContext, useCallback, useEffect } from "react"
+import React, { useContext } from "react"
 import { PropTypes } from "prop-types"
 
 import { Spinner } from "../spinner"
-import { useGetReviews } from "./hooks"
+import { useGetAllReviews } from "./hooks"
 
 const ReviewsContext = React.createContext({
   allReviews: [],
   errorMessage: null,
-  isLoading: false,
 })
 
 export const useReviewsContext = () => useContext(ReviewsContext)
 
 export const ReviewsContextProvider = ({ children }) => {
-  const { errorMessage, getReviewRequest, isLoading, setIsLoading } =
-    useGetReviews()
-
-  const [allReviews, setAllReviews] = useState([])
-
-  const getAllReviews = useCallback(async (reviewId) => {
-    if (allReviews?.length > 1) {
-      return
-    }
-
-    const response = await getReviewRequest(reviewId)
-    console.log("response", response)
-    setAllReviews(response)
-    setIsLoading(false)
-  }, [])
-
-  useEffect(() => {
-    getAllReviews()
-  }, [])
-
-  const value = {
-    allReviews,
-    errorMessage,
-  }
+  const { allReviews, errorMessage, isLoading } = useGetAllReviews()
 
   return (
-    <ReviewsContext.Provider value={value}>
+    <ReviewsContext.Provider value={{ allReviews, errorMessage }}>
       {isLoading ? <Spinner /> : children}
     </ReviewsContext.Provider>
   )

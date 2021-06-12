@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom"
 import { Box, Paragraph } from "grommet"
 // import {Box, Card, CardBody, CardHeader, Paragraph} from "grommet"
 
+import { formatReviewDate } from "../../../utils"
 import { StarRating } from "../../star-rating"
-import { useFormatReviewDate } from "../hooks"
 
 export const ReviewCard = ({
   author,
@@ -15,7 +15,7 @@ export const ReviewCard = ({
 }) => {
   const history = useHistory()
   const reviewPath = `reviews/${id}`
-  const reviewDate = useFormatReviewDate(publishDate)
+  const reviewDate = formatReviewDate(publishDate)
   const goToReview = () => history.push(reviewPath)
 
   return (
