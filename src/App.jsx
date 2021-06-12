@@ -1,9 +1,7 @@
 import React from "react"
-import { Switch, Route } from "react-router-dom"
 import { Box, Grid, Grommet } from "grommet"
 
 import { ReviewsList } from "./components/reviews/reviews-list"
-import { ReviewItem } from "./components/reviews/review-page"
 import { ReviewsContextProvider } from "./components/reviews"
 
 function App() {
@@ -20,13 +18,10 @@ function App() {
         pad="medium"
         rows={["xxsmall", "auto"]}
       >
-        <Box gridArea="header" background="brand" />
-        <Box gridArea="main" background="light-2">
+        <Box gridArea="header" background="dark-2" />
+        <Box gridArea="main">
           <ReviewsContextProvider>
-            <Switch>
-              <Route exact path="/" component={ReviewsList} />
-              <Route path="/reviews/:id" component={ReviewItem} />
-            </Switch>
+            <ReviewsList />
           </ReviewsContextProvider>
         </Box>
       </Grid>

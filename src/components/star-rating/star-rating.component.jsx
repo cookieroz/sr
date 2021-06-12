@@ -5,11 +5,17 @@ import { Box } from "grommet"
 
 import { useGetStars } from "./get-stars.hook"
 
-export const StarRating = ({ color = "accent-4", rating }) => {
+export const StarRating = ({ color = "status-warning", rating }) => {
   const { emptyStarsArray, fullStarsArray, hasPartial } = useGetStars(rating)
 
   return (
-    <Box direction="row" pad="small">
+    <Box
+      alignContent="center"
+      direction="row"
+      fill="horizontal"
+      justify="start"
+      pad="small"
+    >
       {[...fullStarsArray].map((n) => (
         <Star key={`star-${n}`} color={color} />
       ))}
@@ -23,5 +29,6 @@ export const StarRating = ({ color = "accent-4", rating }) => {
 
 StarRating.propTypes = {
   color: PropTypes.string,
+  justify: PropTypes.string,
   rating: PropTypes.number,
 }

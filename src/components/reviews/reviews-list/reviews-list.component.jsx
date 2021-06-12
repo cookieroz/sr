@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Box } from "grommet"
+import { Box, Grid } from "grommet"
 
 import { ReviewCard } from "../review-card"
 import { ErrorComponent } from "../../error"
@@ -9,8 +9,10 @@ export const ReviewsListComponent = ({ errorMessage, reviews = [] }) => {
   return (
     <Box pad="small">
       <ErrorComponent errorMessage={errorMessage} />
-      {reviews?.length > 0 &&
-        reviews.map((review) => <ReviewCard key={review.id} {...review} />)}
+      <Grid fill="horizontal" gap="small" pad="medium">
+        {reviews?.length > 0 &&
+          reviews.map((review) => <ReviewCard key={review.id} {...review} />)}
+      </Grid>
     </Box>
   )
 }

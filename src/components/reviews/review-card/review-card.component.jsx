@@ -1,54 +1,81 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { useHistory } from "react-router-dom"
-import { Box, Paragraph } from "grommet"
-// import {Box, Card, CardBody, CardHeader, Paragraph} from "grommet"
+import { Avatar, Box, Grid, Text } from "grommet"
 
 import { formatReviewDate } from "../../../utils"
 import { StarRating } from "../../star-rating"
+import { UserExpert } from "grommet-icons"
 
 export const ReviewCard = ({
   author,
-  id,
+  body,
   publish_date: publishDate,
   rating,
 }) => {
-  const history = useHistory()
-  const reviewPath = `reviews/${id}`
+  const borderStyle = {
+    color: "border",
+    side: "bottom",
+  }
+
   const reviewDate = formatReviewDate(publishDate)
-  const goToReview = () => history.push(reviewPath)
+  const [truncateText, setTruncateText] = useState(true)
+  const toggleText = () => setTruncateText(!truncateText)
 
   return (
-    <Box pad="small" onClick={goToReview}>
-      {rating && <StarRating rating={rating} />}
-      <Paragraph pad="small" margin="none">{`author: ${author}`}</Paragraph>
-      <Paragraph pad="small" margin="none">{`date: ${reviewDate}`}</Paragraph>
-    </Box>
-  )
+    <Grid
+      areas={[
+        { name: "side", start: [0, 0], end: [0, 0] },
+        { name: "main", start: [1, 0], end: [1, 0] },
+      ]}
+      columns={["20%", "auto"]}
+      border={borderStyle}
+      fill="horizontal"
+      gap="small"
+      pad="medium"
+      rows={["auto"]}
+    >
+      <Box
+        gridArea="side"
+        align="center"
+        alignContent="center"
+        justify="center"
+        pad="medium"
+      >
+        <Avatar background="dark-2">
+          <UserExpert color="accent-1" />
+        </Avatar>
+        <h6>{author}</h6>
+      </Box>
 
-  // return (
-  //   <Box  onClick={goToReview}>
-  //     {rating && <StarRating rating={rating} />}
-  //     {`author: ${author}`}
-  //     {`date: ${reviewDate}`}
-  //   </Box>
-  //   <Card  pad="small">
-  //     <CardHeader pad="medium">Header</CardHeader>
-  //     <CardBody pad="medium">Body</CardBody>
-  //     <CardFooter pad={{horizontal: "small"}} background="light-2">
-  //       <Button
-  //         icon={<Icons.Favorite color="red" />}
-  //         hoverIndicator
-  //       />
-  //       <Button icon={<Icons.ShareOption color="plain" />} hoverIndicator />
-  //     </CardFooter>
-  //   </Card>
-  // )
+      <Box gridArea="main" pad="medium">
+        <Box
+          alignContent="center"
+          direction="row"
+          justify="between"
+          pad="small"
+        >
+          <StarRating justify="start" rating={rating} />
+          <Text
+            alignSelf="center"
+            color="dark-3"
+            margin="none"
+            size="small"
+            textAlign="end"
+          >
+            {reviewDate}
+          </Text>
+        </Box>
+        <Text margin="small" truncate={truncateText} onClick={toggleText}>
+          {body}
+        </Text>
+      </Box>
+    </Grid>
+  )
 }
 
 ReviewCard.propTypes = {
   author: PropTypes.string,
-  id: PropTypes.string,
+  body: PropTypes.string,
   publish_date: PropTypes.string,
   rating: PropTypes.number,
 }
