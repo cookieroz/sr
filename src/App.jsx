@@ -3,6 +3,7 @@ import { Box, Grid, Grommet } from "grommet"
 
 import { ReviewsList } from "./components/reviews/reviews-list"
 import { ReviewsContextProvider } from "./components/reviews"
+import { Header } from "./components/header"
 
 function App() {
   return (
@@ -15,11 +16,10 @@ function App() {
         columns={["auto"]}
         fill="horizontal"
         gap="small"
-        pad="medium"
         rows={["xxsmall", "auto"]}
       >
-        <Box gridArea="header" background="dark-2" />
-        <Box gridArea="main">
+        <Header />
+        <Box gridArea="main" pad="medium">
           <ReviewsContextProvider>
             <ReviewsList />
           </ReviewsContextProvider>
