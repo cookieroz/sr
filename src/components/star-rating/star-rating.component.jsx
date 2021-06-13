@@ -10,6 +10,7 @@ export const StarRating = ({ color = "status-warning", rating }) => {
 
   return (
     <Box
+      align="center"
       alignContent="center"
       direction="row"
       fill="horizontal"

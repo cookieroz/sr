@@ -1,16 +1,14 @@
 import React from "react"
-import { Box, Nav } from "grommet"
+import { Box } from "grommet"
 
 import { useReviewsContext } from "../reviews.provider"
-import { useFilterSortReviews } from "../hooks"
+import { useFilterReviews } from "../hooks"
 import { ReviewsSelect } from "../reviews-select"
 import { ReviewsListComponent } from "./reviews-list.component"
 
 export const ReviewsList = () => {
   const { errorMessage } = useReviewsContext()
-  const { filterOptions, reviews, setFilter } = useFilterSortReviews()
-  // const { filterOptions, reviews, setFilter, setSort, sortOptions } =
-  //   useFilterSortReviews()
+  const { filterOptions, reviews, setFilter } = useFilterReviews()
 
   return (
     <Box>

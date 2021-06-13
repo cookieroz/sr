@@ -14,10 +14,11 @@ export const Header = ({
     fill="horizontal"
     gridArea="header"
     height="xsmall"
+    justify="center"
     margin={{ bottom: "medium" }}
     pad={{ left: "medium" }}
   >
-    <Book size="large" color={headingColor} />
+    <Book size="medium" color={headingColor} />
     <Heading color={headingColor} level="2" margin="medium">
       Shakespeare Reviewed
     </Heading>

@@ -1,11 +1,14 @@
 import { useMemo } from "react"
-import { createIntegerArrayFromLength, ratingRoundUp } from "../../utils"
+import { createIntegerArrayFromLength } from "../../utils"
 
 export const useGetStars = (rating, MAX = 5) => {
-  const ratingAsNumber = parseFloat(ratingRoundUp(rating))
+  const ratingAsNumber = parseFloat(rating)
   const fullStars = Math.min(Math.floor(ratingAsNumber), MAX)
   const hasPartial =
-    rating && fullStars < MAX && !Number.isInteger(ratingAsNumber)
+    rating &&
+    fullStars < MAX &&
+    !Number.isInteger(ratingAsNumber) &&
+    fullStars < Math.round(ratingAsNumber)
   const emptyStars = MAX - (hasPartial ? fullStars + 1 : fullStars)
 
   return useMemo(
