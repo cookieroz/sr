@@ -16,7 +16,7 @@ function App() {
         columns={["auto"]}
         fill="horizontal"
         gap="small"
-        rows={["xxsmall", "auto"]}
+        rows={["xsmall", "auto"]}
       >
         <Header />
         <Box gridArea="main" pad="medium">

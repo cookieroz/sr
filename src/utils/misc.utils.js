@@ -9,3 +9,6 @@ export const formatReviewDate = (reviewDate) => {
 
   return date.toLocaleDateString("en-US")
 }
+
+export const ratingRoundUp = (score) =>
+  Math.min(Math.ceil(score * 2) / 2, 5).toFixed(1)

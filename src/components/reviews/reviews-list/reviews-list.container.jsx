@@ -14,9 +14,11 @@ export const ReviewsList = () => {
 
   return (
     <Box>
-      <Nav direction="row" background="brand" pad="medium">
-        <ReviewsSelect options={filterOptions} onSelectChange={setFilter} />
-      </Nav>
+      <ReviewsSelect
+        options={filterOptions}
+        onSelectChange={setFilter}
+        title="Filter By Review Ratings"
+      />
       <ReviewsListComponent errorMessage={errorMessage} reviews={reviews} />
     </Box>
   )
