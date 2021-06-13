@@ -5,10 +5,7 @@ export const useGetStars = (rating, MAX = 5) => {
   const ratingAsNumber = parseFloat(rating)
   const fullStars = Math.min(Math.floor(ratingAsNumber), MAX)
   const hasPartial =
-    rating &&
-    fullStars < MAX &&
-    !Number.isInteger(ratingAsNumber) &&
-    fullStars < Math.round(ratingAsNumber)
+    rating && fullStars < MAX && fullStars < Math.round(ratingAsNumber)
   const emptyStars = MAX - (hasPartial ? fullStars + 1 : fullStars)
 
   return useMemo(
