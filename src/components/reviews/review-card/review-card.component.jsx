@@ -27,7 +27,7 @@ export const ReviewCard = ({
         { name: "side", start: [0, 0], end: [0, 0] },
         { name: "main", start: [1, 0], end: [1, 0] },
       ]}
-      columns={["20%", "auto"]}
+      columns={["25%", "auto"]}
       border={borderStyle}
       fill="horizontal"
       gap="small"
